@@ -248,8 +248,8 @@ a:hover {
 }
 
 .qr-code {
-    width: 200px;  /* Увеличенный размер */
-    height: 200px; /* Увеличенный размер */
+    width: 200px; 
+    height: 200px;
     object-fit: contain;
 }
 
@@ -298,4 +298,5 @@ a:hover {
         width: 180px;
         height: 180px;
     }
+    /* Контейнер для карточки */
 }

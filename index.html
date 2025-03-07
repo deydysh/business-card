@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Business Card</title>
+    <title>Here is ... Ilya!</title>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -34,6 +35,9 @@
                 </a>
                 <a href="https://wa.me/79688858830" target="_blank">
                     <img src="images/whatsapp.png" alt="WhatsApp">
+                </a>
+                <a href="#" id="wechat-btn">
+                    <img src="images/wechat.png" alt="WeChat">
                 </a>
             </div>
         </div>
@@ -82,14 +86,13 @@
     </div>
 
     <script>
-        // Открытие и закрытие модального окна с QR-кодом
-        const shareBtn = document.getElementById('share-btn');
-        const modal = document.getElementById('qr-modal');
-        const overlay = document.getElementById('overlay');
-        const closeModal = document.getElementById('close-modal');
+        // Универсальная функция для открытия модального окна с QR-кодом
+        function openModalWithQRCode(qrCodePath) {
+            // Открываем модальное окно (используя общую логику)
+            const modal = document.getElementById('qr-modal');
+            const overlay = document.getElementById('overlay');
+            const qrImage = document.querySelector('.qr-code');
 
-        // Открытие модального окна при клике на кнопку "Поделиться"
-        shareBtn.onclick = function() {
             modal.style.display = "block";
             setTimeout(() => {
                 modal.classList.add('active'); // Анимация модального окна
@@ -98,10 +101,29 @@
                     overlay.style.opacity = 1; // Затемнение появляется после окна
                 }, 10); // Небольшая задержка перед затемнением
             }, 10); // Задержка для анимации
+
+            // Устанавливаем изображение QR-кода, переданное в параметре
+            qrImage.src = qrCodePath;
+        }
+
+        // Обработчик для кнопки "Поделиться"
+        const shareBtn = document.getElementById('share-btn');
+        shareBtn.onclick = function() {
+            openModalWithQRCode('images/qr-code.png');  // Путь к стандартному QR-коду
+        }
+
+        // Обработчик для кнопки WeChat
+        const wechatBtn = document.getElementById('wechat-btn');
+        wechatBtn.onclick = function() {
+            openModalWithQRCode('images/wechat-qr-code.png');  // Путь к QR-коду WeChat
         }
 
         // Закрытие модального окна при клике на крестик
+        const closeModal = document.getElementById('close-modal');
         closeModal.onclick = function() {
+            const modal = document.getElementById('qr-modal');
+            const overlay = document.getElementById('overlay');
+
             modal.classList.remove('active');
             setTimeout(() => {
                 modal.style.display = "none";
@@ -110,12 +132,14 @@
             }, 300); // Ждем окончания анимации
         }
 
-        // Закрытие модального окна при клике вне окна
+        // Закрытие модального окна при клике вне окна (на overlay)
         window.onclick = function(event) {
+            const overlay = document.getElementById('overlay');
             if (event.target === overlay) {
                 closeModal.click();
             }
         }
+
     </script>
 </body>
 </html>
