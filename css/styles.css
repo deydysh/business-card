@@ -18,79 +18,172 @@ body {
 
 /* Контейнер для карточки */
 .container {
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     width: 100%;
-    max-width: 400px;
-    text-align: center;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; /* Скругление всей карточки */
+    overflow: hidden; /* Чтобы не выходили за пределы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавление тени */
 }
 
-/* Аватар */
+/* Верхняя часть */
+.top-section {
+    background-color: #002244; /* Темно-синий фон */
+    text-align: center;
+    padding: 30px 20px; /* Уменьшение паддингов */
+}
+
 .avatar {
-    width: 120px;
-    height: 120px;
+    width: 150px; /* Увеличение размера аватарки */
+    height: 150px; /* Увеличение размера аватарки */
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Уменьшение отступа */
+    border: 3px solid #ffffff; /* Уменьшение размера белого контура */
 }
 
-/* Заголовок имени */
 h1 {
     font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
+    color: #ffffff; /* Белый цвет текста */
 }
 
-/* Подзаголовок профессии */
+/* Новый текст под фамилией */
+.subtitle {
+    font-size: 16px;
+    color: #cce7ff; /* Светло-голубой цвет, как фон у иконок */
+    margin-top: 5px;
+}
+
+/* Секция с иконками социальных сетей */
+.social-section {
+    background: linear-gradient(to bottom, #002244 50%, #ffffff 50%);
+    padding: 20px 20px; /* Уменьшение паддингов */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px; /* Уменьшение расстояния между иконками */
+}
+
+.social-icons a {
+    display: block;
+    background-color: #cce7ff; /* Светло-голубой фон */
+    padding: 12px; /* Уменьшение размера фона */
+    border-radius: 50%;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.social-icons a:hover {
+    background-color: #66b2ff; /* Еще более светлый синий фон при наведении */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Нижняя часть */
+.bottom-section {
+    background-color: #ffffff;
+    padding: 20px 20px; /* Уменьшение паддингов */
+    text-align: left;
+}
+
+/* Убираем отступы между секциями */
+.about-me, .education {
+    margin: 0;
+}
+
+.about-me h2, .education h2 {
+    font-size: 22px;
+    color: #002244; /* Темно-синий цвет текста */
+    margin-bottom: 10px;
+}
+
+.about-me p, .education p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
 p {
     font-size: 16px;
-    margin-bottom: 8px;
-    color: #666;
+    margin-bottom: 10px;
 }
 
-/* Ссылки (телефон и email) */
 a {
     color: #007bff;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Иконки соцсетей */
-.social-icons {
+/* Контакты */
+.contact-info {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    flex-direction: column;
 }
 
-.social-icons img {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.social-icons img:hover {
-    transform: scale(1.2);
+.contact-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin-right: 10px;
 }
 
-/* Адаптивность для маленьких экранов */
+/* Иконки для телефона и почты */
+.contact-item a {
+    font-size: 16px;
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    color: #007bff;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-        max-width: 300px;
+    .top-section {
+        padding: 25px 15px; /* Уменьшение паддингов для мобильных устройств */
     }
 
     .avatar {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
 
     h1 {
+        font-size: 20px;
+    }
+
+    .social-icons {
+        gap: 10px;
+    }
+
+    .bottom-section {
+        padding: 20px 15px;
+    }
+
+    .about-me h2, .education h2 {
         font-size: 20px;
     }
 
@@ -98,38 +191,8 @@ a:hover {
         font-size: 14px;
     }
 
-    .social-icons img {
-        width: 25px;
-        height: 25px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-        max-width: 250px;
-    }
-
-    .avatar {
-        width: 80px;
-        height: 80px;
-    }
-
-    h1 {
-        font-size: 18px;
-    }
-
-    p {
-        font-size: 12px;
-    }
-
-    .social-icons {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .social-icons img {
-        width: 20px;
-        height: 20px;
+    .contact-icon {
+        width: 18px;
+        height: 18px;
     }
 }
