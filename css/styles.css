@@ -7,7 +7,7 @@
 
 /* Основные стили для контейнера */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #f4f4f9;
     color: #333;
     display: flex;
@@ -22,43 +22,69 @@ body {
     max-width: 600px;
     display: flex;
     flex-direction: column;
-    border-radius: 10px; /* Скругление всей карточки */
-    overflow: hidden; /* Чтобы не выходили за пределы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавление тени */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+/* Кнопка "Поделиться" */
+.share-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.share-button button {
+    background: #cce7ff;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.share-button button:hover {
+    background: #66b2ff;
+}
+
+.share-button img {
+    width: 18px;
+    height: 18px;
 }
 
 /* Верхняя часть */
 .top-section {
-    background-color: #002244; /* Темно-синий фон */
+    background-color: #002244;
     text-align: center;
-    padding: 30px 20px; /* Уменьшение паддингов */
+    padding: 30px 20px;
 }
 
 .avatar {
-    width: 150px; /* Увеличение размера аватарки */
-    height: 150px; /* Увеличение размера аватарки */
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px; /* Уменьшение отступа */
-    border: 3px solid #ffffff; /* Уменьшение размера белого контура */
+    margin-bottom: 15px;
+    border: 3px solid #ffffff;
 }
 
 h1 {
     font-size: 24px;
-    color: #ffffff; /* Белый цвет текста */
+    color: #ffffff;
 }
 
 /* Новый текст под фамилией */
 .subtitle {
     font-size: 16px;
-    color: #cce7ff; /* Светло-голубой цвет, как фон у иконок */
+    color: #cce7ff;
     margin-top: 5px;
 }
 
 /* Секция с иконками социальных сетей */
 .social-section {
     background: linear-gradient(to bottom, #002244 50%, #ffffff 50%);
-    padding: 20px 20px; /* Уменьшение паддингов */
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,20 +92,20 @@ h1 {
 
 .social-icons {
     display: flex;
-    gap: 15px; /* Уменьшение расстояния между иконками */
+    gap: 15px;
 }
 
 .social-icons a {
     display: block;
-    background-color: #cce7ff; /* Светло-голубой фон */
-    padding: 12px; /* Уменьшение размера фона */
+    background-color: #cce7ff;
+    padding: 12px;
     border-radius: 50%;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .social-icons a:hover {
-    background-color: #66b2ff; /* Еще более светлый синий фон при наведении */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+    background-color: #66b2ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .social-icons img {
@@ -91,18 +117,18 @@ h1 {
 /* Нижняя часть */
 .bottom-section {
     background-color: #ffffff;
-    padding: 20px 20px; /* Уменьшение паддингов */
-    text-align: left;
+    padding: 20px;
 }
 
 /* Убираем отступы между секциями */
 .about-me, .education {
     margin: 0;
+    padding-bottom: 10px;
 }
 
 .about-me h2, .education h2 {
     font-size: 22px;
-    color: #002244; /* Темно-синий цвет текста */
+    color: #002244;
     margin-bottom: 10px;
 }
 
@@ -129,41 +155,108 @@ a:hover {
 }
 
 /* Контакты */
-.contact-info {
+.contact-section {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 10px;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+}
+
+.contact-item a {
+    color: #000000; /* Черный цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.contact-item a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
 }
 
 .contact-icon {
     width: 20px;
     height: 20px;
-    object-fit: contain;
     margin-right: 10px;
 }
 
-/* Иконки для телефона и почты */
-.contact-item a {
-    font-size: 16px;
-    color: #333;
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
+/* Всплывающее окно */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0; /* Изначально невидимое */
+    transition: opacity 0.3s ease; /* Плавное изменение прозрачности */
 }
 
-.contact-item a:hover {
-    color: #007bff;
+.modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.7); /* Начальное состояние: уменьшенное */
+    opacity: 0;  /* Начальная непрозрачность */
+    width: 300px;  /* Увеличенный размер */
+    height: 300px; /* Увеличенный размер */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Плавное изменение */
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);  /* Модальное окно на месте */
+    opacity: 1;  /* Полная непрозрачность */
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 12px;
+}
+
+.close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    background: #ccc;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.close:hover {
+    background: #999;
+}
+
+.qr-code {
+    width: 200px;  /* Увеличенный размер */
+    height: 200px; /* Увеличенный размер */
+    object-fit: contain;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
     .top-section {
-        padding: 25px 15px; /* Уменьшение паддингов для мобильных устройств */
+        padding: 25px 15px;
     }
 
     .avatar {
@@ -194,5 +287,15 @@ a:hover {
     .contact-icon {
         width: 18px;
         height: 18px;
+    }
+
+    .modal {
+        width: 280px;
+        height: 280px;
+    }
+
+    .qr-code {
+        width: 180px;
+        height: 180px;
     }
 }

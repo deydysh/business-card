@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Business Card</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+        <!-- Кнопка "Поделиться" -->
+        <div class="share-button">
+            <button id="share-btn">
+                <img src="images/share.png" alt="Share">
+            </button>
+        </div>
+
         <!-- Верхняя часть -->
         <div class="top-section">
             <img src="images/avatar.jpg" alt="Profile Photo" class="avatar">
             <h1>ILYA DEYDYSH</h1>
-            <p class="subtitle">Project Manager, Moscow, Russia</p>
+            <p class="subtitle">Project Manager | Moscow, Russia</p>
         </div>
 
         <!-- Секция с иконками социальных сетей -->
@@ -48,15 +56,66 @@
                 </p>
             </section>
 
-            <p class="contact-item">
-                <img src="images/phone.png" alt="Phone" class="contact-icon"> 
-                <a href="tel:+79688858830">+7   (968) 885-88-30</a>
-            </p>
-            <p class="contact-item">
-                <img src="images/mail.png" alt="Email" class="contact-icon"> 
-                <a href="mailto:deydysh.ilya@gmail.com">deydysh.ilya@gmail.com</a>
-            </p>
+            <!-- Контактная информация -->
+            <div class="contact-section">
+                <p class="contact-item left">
+                    <img src="images/mail.png" alt="Email" class="contact-icon"> 
+                    <a href="mailto:deydysh.ilya@gmail.com">deydysh.ilya@gmail.com</a>
+                </p>
+                <p class="contact-item right">
+                    <img src="images/phone.png" alt="Phone" class="contact-icon"> 
+                    <a href="tel:+79688858830">+7 (968) 885-88-30</a>
+                </p>
+            </div>
         </div>
     </div>
+
+    <!-- Слой для затемнения фона -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Всплывающее окно с QR-кодом -->
+    <div id="qr-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <img src="images/qr-code.png" alt="QR Code" class="qr-code">
+        </div>
+    </div>
+
+    <script>
+        // Открытие и закрытие модального окна с QR-кодом
+        const shareBtn = document.getElementById('share-btn');
+        const modal = document.getElementById('qr-modal');
+        const overlay = document.getElementById('overlay');
+        const closeModal = document.getElementById('close-modal');
+
+        // Открытие модального окна при клике на кнопку "Поделиться"
+        shareBtn.onclick = function() {
+            modal.style.display = "block";
+            setTimeout(() => {
+                modal.classList.add('active'); // Анимация модального окна
+                overlay.style.display = "block";
+                setTimeout(() => {
+                    overlay.style.opacity = 1; // Затемнение появляется после окна
+                }, 10); // Небольшая задержка перед затемнением
+            }, 10); // Задержка для анимации
+        }
+
+        // Закрытие модального окна при клике на крестик
+        closeModal.onclick = function() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = "none";
+                overlay.style.display = "none";
+                overlay.style.opacity = 0; // Скрываем затемнение
+            }, 300); // Ждем окончания анимации
+        }
+
+        // Закрытие модального окна при клике вне окна
+        window.onclick = function(event) {
+            if (event.target === overlay) {
+                closeModal.click();
+            }
+        }
+    </script>
 </body>
 </html>
