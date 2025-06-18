@@ -36,12 +36,15 @@ body {
 }
 
 .share-button button {
-    background: #cce7ff;
     width: 37px;
     height: 37px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    padding: 8px;
     border-radius: 50%;
+    box-sizing: border-box;
+    background: #cce7ff;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -53,6 +56,7 @@ body {
 .share-button img {
     width: 18px;
     height: 18px;
+    object-fit: contain
 }
 
 /* Верхняя часть */
