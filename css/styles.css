@@ -37,6 +37,8 @@ body {
 
 .share-button button {
     background: #cce7ff;
+    width: 37px;
+    height: 37px;
     border: none;
     padding: 8px;
     border-radius: 50%;
